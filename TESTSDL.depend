@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1742889429 source:c:\nhapmonlaptrinh\testsdl\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"def.h"
+	"Graphic.h"
+	"game.h"
+	"loadMedia.h"
+
+1742885239 c:\nhapmonlaptrinh\testsdl\def.h
+
+1742517562 c:\nhapmonlaptrinh\testsdl\graphic.h
+	<SDL.h>
+	<SDL_image.h>
+	"def.h"
+
+1742896869 c:\nhapmonlaptrinh\testsdl\game.h
+	"def.h"
+	<string>
+
+1742885367 c:\nhapmonlaptrinh\testsdl\loadmedia.h
+

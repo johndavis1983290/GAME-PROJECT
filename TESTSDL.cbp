@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="TESTSDL" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/TESTSDL" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/TESTSDL" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="Background.png" />
+		<Unit filename="Graphic.h" />
+		<Unit filename="Main_character(2).png" />
+		<Unit filename="def.h" />
+		<Unit filename="fish_left(1).png" />
+		<Unit filename="fish_left(2).png" />
+		<Unit filename="fish_left(3).png" />
+		<Unit filename="fish_left(4).png" />
+		<Unit filename="fish_left(5).png" />
+		<Unit filename="fish_left(6).png" />
+		<Unit filename="fish_left(7).png" />
+		<Unit filename="fish_right(1).png" />
+		<Unit filename="fish_right(2).png" />
+		<Unit filename="fish_right(3).png" />
+		<Unit filename="fish_right(4).png" />
+		<Unit filename="fish_right(5).png" />
+		<Unit filename="fish_right(6).png" />
+		<Unit filename="fish_right(7).png" />
+		<Unit filename="game.h" />
+		<Unit filename="loadMedia.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="menu.jpg" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
