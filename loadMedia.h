@@ -1,50 +1,10 @@
-//#ifndef LOADMEDIA_H
-//#define LOADMEDIA_H
-//
-//
-//struct fish{
-//   SDL_Texture* rightTexture[7];
-//   SDL_Texture* leftTexture[7];
-//   SDL_Texture* upTexture[7];
-//   SDL_Texture* downTexture[7];
-//
-//   SDL_Texture* currentTexture;
-//
-//   int textureIndex = 0; //Xac dinh texture nao hien thi
-//
-//   void updateTexture(KeyPressSurfaces key){
-//       static int counter = 0;
-//     if(counter >=2){
-//        counter = 0;
-//        textureIndex++;
-//     }
-//     if(textureIndex >= 7){
-//        textureIndex = 0;
-//     }
-//     switch(key){
-//     case UP:
-//        currentTexture = upTexture[textureIndex];
-//        break;
-//     case DOWN:
-//        currentTexture = downTexture[textureIndex];
-//        break;
-//     case LEFT:
-//        currentTexture = leftTexture[textureIndex];
-//        break;
-//     case RIGHT:
-//        currentTexture = rightTexture[textureIndex];
-//        break;
-//   }
-//   counter++;
-//   }
-//
-//};
-//#endif // LOADMEDIA_h
 #ifndef LOADMEDIA_H
 #define LOADMEDIA_H
 
+#include "Graphic.h"
+#include <string>
 
-struct fish{
+struct main_fish{
    SDL_Texture* rightTexture[7];
    SDL_Texture* leftTexture[7];
    SDL_Texture* upTexture[7];
@@ -95,5 +55,30 @@ struct fish{
    counter++;
    }
 
+};
+
+struct otherfish{
+   SDL_Texture* rightTexture[6];
+   SDL_Texture* leftTexture[6];
+   SDL_Texture* currentTexture;
+
+   int textureIndex = 0;
+   void updateTexture(std::string direction){
+   if(textureIndex >= 6){
+    textureIndex = 0;
+   }
+    if(direction == "left"){
+      currentTexture = rightTexture[textureIndex];
+      textureIndex++;
+    }
+    else if(direction == "right"){
+      currentTexture = leftTexture[textureIndex];
+      textureIndex++;
+   }
+   else{
+    currentTexture = rightTexture[textureIndex];
+    textureIndex++;
+   }
+   }
 };
 #endif // LOADMEDIA_h

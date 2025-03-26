@@ -34,7 +34,6 @@
 		</Compiler>
 		<Unit filename="Background.png" />
 		<Unit filename="Graphic.h" />
-		<Unit filename="Main_character(2).png" />
 		<Unit filename="def.h" />
 		<Unit filename="fish_left(1).png" />
 		<Unit filename="fish_left(2).png" />
@@ -54,6 +53,30 @@
 		<Unit filename="loadMedia.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="menu.jpg" />
+		<Unit filename="otherfish(2)_left(1).png" />
+		<Unit filename="otherfish(2)_left(2).png" />
+		<Unit filename="otherfish(2)_left(3).png" />
+		<Unit filename="otherfish(2)_left(4).png" />
+		<Unit filename="otherfish(2)_left(5).png" />
+		<Unit filename="otherfish(2)_left(6).png" />
+		<Unit filename="otherfish(2)_right(1).png" />
+		<Unit filename="otherfish(2)_right(2).png" />
+		<Unit filename="otherfish(2)_right(3).png" />
+		<Unit filename="otherfish(2)_right(4).png" />
+		<Unit filename="otherfish(2)_right(5).png" />
+		<Unit filename="otherfish(2)_right(6).png" />
+		<Unit filename="otherfish_left(1).png" />
+		<Unit filename="otherfish_left(2).png" />
+		<Unit filename="otherfish_left(3).png" />
+		<Unit filename="otherfish_left(4).png" />
+		<Unit filename="otherfish_left(5).png" />
+		<Unit filename="otherfish_left(6).png" />
+		<Unit filename="otherfish_right(1).png" />
+		<Unit filename="otherfish_right(2).png" />
+		<Unit filename="otherfish_right(3).png" />
+		<Unit filename="otherfish_right(4).png" />
+		<Unit filename="otherfish_right(5).png" />
+		<Unit filename="otherfish_right(6).png" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

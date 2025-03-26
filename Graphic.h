@@ -54,11 +54,12 @@ struct Graphics{
         }
         return texture;
     }
-       void renderTexture(SDL_Texture* texture, int x, int y, SDL_Renderer* renderer){
+       void renderTexture(SDL_Texture* texture, int x, int y, int width, int height, SDL_Renderer* renderer){
        SDL_Rect animator;
        animator.x = x;
        animator.y = y;
-       SDL_QueryTexture(texture, NULL, NULL, &animator.w, &animator.h);
+       animator.w = width;
+       animator.h = height;
        SDL_RenderCopy(renderer, texture, NULL, &animator);
     }
         void quitSDL(){
