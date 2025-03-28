@@ -160,6 +160,8 @@ int main(int argc, char *argv[])
       }
     bool quit = false;
     SDL_Event event;
+    bool showBoundingBoxes = true;
+    KeyPressSurfaces lastHorizontalSurfaces = RIGHT;
     while(!quit){
         while(SDL_PollEvent(&event)){
             if(event.type == SDL_QUIT){
@@ -167,7 +169,7 @@ int main(int argc, char *argv[])
             }
         }
     const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
-    KeyPressSurfaces direction = RIGHT;
+    KeyPressSurfaces direction = lastHorizontalSurfaces;
 
     if(currentKeyStates[SDL_SCANCODE_UP]){
         if(currentKeyStates[SDL_SCANCODE_RIGHT]){
@@ -228,7 +230,27 @@ int main(int argc, char *argv[])
     for(int i=0; i< NUM_FISH1; i++){
     graphics.renderTexture(fish1[i].currentTexture, movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, graphics.renderer);
     graphics.renderTexture(fish2[i].currentTexture, movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, graphics.renderer);
+    if (checkCollision(mouse.x, mouse.y, 100, 90, movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, lastHorizontalSurfaces)) {
+                movement1[i].resetFishPosition((rand() % 2 == 0) ? "left" : "right");
+            }
+    if (checkCollision(mouse.x, mouse.y, 100, 90, movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, lastHorizontalSurfaces)) {
+                quit = true;
+            }
     }
+//    if (showBoundingBoxes) {
+//            // Khung hình bao quanh của cá chính (màu đỏ)
+//            graphics.drawRect(mouse.x, mouse.y, 100, 90, 255, 0, 0);
+//
+//            // Khung hình bao quanh của cá nhỏ (màu xanh)
+//            for (int i = 0; i < NUM_FISH1; i++) {
+//                graphics.drawRect(movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, 0, 255, 0);
+//            }
+//
+//            // Khung hình bao quanh của cá lớn (màu vàng)
+//            for (int i = 0; i < NUM_FISH2; i++) {
+//                graphics.drawRect(movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, 255, 255, 0);
+//            }
+//        }
     graphics.presentScene();
 
     SDL_Delay(15);

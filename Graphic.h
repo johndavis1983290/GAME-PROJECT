@@ -62,6 +62,16 @@ struct Graphics{
        animator.h = height;
        SDL_RenderCopy(renderer, texture, NULL, &animator);
     }
+    void drawRect(int x, int y, int w, int h, Uint8 r, Uint8 g, Uint8 b) {
+        SDL_Rect rect;
+        rect.x = x;
+        rect.y = y;
+        rect.w = w;
+        rect.h = h;
+
+        SDL_SetRenderDrawColor(renderer, r, g, b, 255);  // Màu của khung (RGB)
+        SDL_RenderDrawRect(renderer, &rect);
+    }
         void quitSDL(){
        IMG_Quit();
        SDL_DestroyRenderer(renderer);

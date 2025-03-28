@@ -21,7 +21,7 @@
 
 1742885367 c:\nhapmonlaptrinh\testsdl\loadmedia.h
 
-1742978646 source:c:\ltnc\game project\main.cpp
+1743135216 source:c:\ltnc\game project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -32,14 +32,14 @@
 	"game.h"
 	"loadMedia.h"
 
-1742921832 c:\ltnc\game project\def.h
+1743063340 c:\ltnc\game project\def.h
 
-1742962968 c:\ltnc\game project\graphic.h
+1743125967 c:\ltnc\game project\graphic.h
 	<SDL.h>
 	<SDL_image.h>
 	"def.h"
 
-1742965757 c:\ltnc\game project\game.h
+1743135216 c:\ltnc\game project\game.h
 	<string>
 	"def.h"
 
