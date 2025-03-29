@@ -32,8 +32,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Background.png" />
 		<Unit filename="Graphic.h" />
+		<Unit filename="WordFont/MJ-Megants.ttf" />
+		<Unit filename="background_2.png" />
 		<Unit filename="def.h" />
 		<Unit filename="fish_left(1).png" />
 		<Unit filename="fish_left(2).png" />

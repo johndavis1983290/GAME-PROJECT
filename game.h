@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include <string>
+#include <SDL_ttf.h>
 
 #define INITIAL_SPEED 3
 #include "def.h"
@@ -114,4 +115,64 @@ bool checkCollision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int 
      }
      return false;
 }
+
+void initTimer(SDL_Renderer* renderer, TTF_Font* font){
+    timer = 60;
+    SDL_Color textColor = {255, 255, 255};
+    std::string timerText = "Time: " + std::to_string(timer);
+
+    SDL_Surface* TimeSurface = TTF_RenderText_Solid(font, timerText.c_str(), textColor);
+    timerTexture = SDL_CreateTextureFromSurface(renderer, TimeSurface);
+    SDL_FreeSurface(TimeSurface);
+}
+
+void updateTimer(SDL_Renderer* renderer, TTF_Font* font){
+    static Uint32 start_time = SDL_GetTicks();
+    Uint32 elapsed_time = SDL_GetTicks() - start_time;
+    if(elapsed_time >= 1000){
+        timer--;
+        start_time = SDL_GetTicks();
+
+        SDL_Color textColor = {255, 255, 255};
+        std::string timerText = "Time: " + std::to_string(timer);
+
+        SDL_Surface* TimeSurface = TTF_RenderText_Solid(font, timerText.c_str(), textColor);
+        SDL_DestroyTexture(timerTexture);
+        timerTexture = SDL_CreateTextureFromSurface(renderer, TimeSurface);
+        SDL_FreeSurface(TimeSurface);
+        if(timer <=0){
+        std::cout << "Game Over! Your time to be a fish has been over!!!" << std::endl;
+    }
+    }
+}
+
+void RenderTime(SDL_Renderer* renderer){
+   SDL_Rect timerRect = {10, 10, 150, 50};
+   SDL_RenderCopy(renderer, timerTexture, NULL, &timerRect);
+}
+
+void initScore(SDL_Renderer* renderer, TTF_Font* font){
+    score = 0;
+    SDL_Color textColor = {255 , 255 , 255};
+    std::string scoreText = "Score: " + std::to_string(score);
+
+    SDL_Surface* scoreSurface = TTF_RenderText_Solid(font, scoreText.c_str(), textColor);
+    scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
+    SDL_FreeSurface(scoreSurface);
+}
+
+void updateScore(SDL_Renderer* renderer, TTF_Font* font){
+     SDL_Color textColor = {255, 255, 255};
+     std::string scoreText = "Score: " + std::to_string(score);
+        SDL_Surface* scoreSurface = TTF_RenderText_Solid(font, scoreText.c_str(), textColor);
+        SDL_DestroyTexture(scoreTexture);
+      scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
+        SDL_FreeSurface(scoreSurface);
+}
+
+void RenderScore(SDL_Renderer* renderer){
+    SDL_Rect scoreRect = {10 + WINDOW_WIDTH - 300, 10, 150, 50};
+    SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreRect);
+}
+
 #endif // GAME_H

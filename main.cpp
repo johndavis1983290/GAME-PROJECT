@@ -3,6 +3,7 @@
 #include <SDL_image.h>
 #include <string>
 #include <ctime>
+#include <SDL_ttf.h>
 #include "def.h"
 #include "Graphic.h"
 #include "game.h"
@@ -10,6 +11,10 @@
 
 using namespace std;
 
+int score = 0;
+int timer = 60;
+SDL_Texture* timerTexture = nullptr;
+SDL_Texture* scoreTexture = nullptr;
 
 void waitUntilClicktoStart(SDL_Rect buttonRect){
     SDL_Event e;
@@ -50,9 +55,21 @@ int main(int argc, char *argv[])
     Graphics graphics;
     graphics.init();
 
+    if(TTF_Init() == -1){
+        cout << "TTF_Init Error: " << TTF_GetError() << endl;
+        return 1;
+    }
+    TTF_Font* font = TTF_OpenFont("WordFont/MJ-Megants.ttf",24);
+    if(font == nullptr){
+        cout << "Failed to load font: " << TTF_GetError() << endl;
+        return 1;
+    }
+    initTimer(graphics.renderer, font);
+    initScore(graphics.renderer, font);
+
     SDL_Texture* background[2];
     background[0] = graphics.loadTexture("menu.jpg");
-    background[1] = graphics.loadTexture("Background.png");
+    background[1] = graphics.loadTexture("background_2.png");
     graphics.prepareScene(background[0]);
     graphics.presentScene();
 
@@ -160,7 +177,6 @@ int main(int argc, char *argv[])
       }
     bool quit = false;
     SDL_Event event;
-    bool showBoundingBoxes = true;
     KeyPressSurfaces lastHorizontalSurfaces = RIGHT;
     while(!quit){
         while(SDL_PollEvent(&event)){
@@ -168,8 +184,10 @@ int main(int argc, char *argv[])
                 quit = true;
             }
         }
-    const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
     KeyPressSurfaces direction = lastHorizontalSurfaces;
+    updateTimer(graphics.renderer, font);
+    updateScore(graphics.renderer, font);
+    const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 
     if(currentKeyStates[SDL_SCANCODE_UP]){
         if(currentKeyStates[SDL_SCANCODE_RIGHT]){
@@ -232,30 +250,22 @@ int main(int argc, char *argv[])
     graphics.renderTexture(fish2[i].currentTexture, movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, graphics.renderer);
     if (checkCollision(mouse.x, mouse.y, 100, 90, movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, lastHorizontalSurfaces)) {
                 movement1[i].resetFishPosition((rand() % 2 == 0) ? "left" : "right");
+                timer += 3;
+                score += 10;
             }
     if (checkCollision(mouse.x, mouse.y, 100, 90, movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, lastHorizontalSurfaces)) {
+                score = 0;
                 quit = true;
             }
     }
-//    if (showBoundingBoxes) {
-//            // Khung hình bao quanh của cá chính (màu đỏ)
-//            graphics.drawRect(mouse.x, mouse.y, 100, 90, 255, 0, 0);
-//
-//            // Khung hình bao quanh của cá nhỏ (màu xanh)
-//            for (int i = 0; i < NUM_FISH1; i++) {
-//                graphics.drawRect(movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, 0, 255, 0);
-//            }
-//
-//            // Khung hình bao quanh của cá lớn (màu vàng)
-//            for (int i = 0; i < NUM_FISH2; i++) {
-//                graphics.drawRect(movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, 255, 255, 0);
-//            }
-//        }
+    RenderTime(graphics.renderer);
+    RenderScore(graphics.renderer);
     graphics.presentScene();
 
     SDL_Delay(15);
 }
-
+    TTF_CloseFont(font);
+    TTF_Quit();
     graphics.quitSDL();
     return 0;
 }

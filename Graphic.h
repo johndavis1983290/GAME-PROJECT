@@ -69,7 +69,7 @@ struct Graphics{
         rect.w = w;
         rect.h = h;
 
-        SDL_SetRenderDrawColor(renderer, r, g, b, 255);  // Màu của khung (RGB)
+        SDL_SetRenderDrawColor(renderer, r, g, b, 255);
         SDL_RenderDrawRect(renderer, &rect);
     }
         void quitSDL(){
