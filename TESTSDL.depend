@@ -21,7 +21,7 @@
 
 1742885367 c:\nhapmonlaptrinh\testsdl\loadmedia.h
 
-1743275456 source:c:\ltnc\game project\main.cpp
+1743279856 source:c:\ltnc\game project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
