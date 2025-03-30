@@ -65,6 +65,12 @@ int main(int argc, char *argv[])
         SDL_Log("Failed to load background music! SDL_mixer Error: %s", Mix_GetError());
         return 1;
       }
+      Mix_VolumeMusic(64);
+      if(Mix_PlayMusic(backgroundMusic, -1)== -1){
+        SDL_Log("Failed to play background music! SDL_mixer Error: %s", Mix_GetError());
+        return 1;
+      }
+
 
     if(TTF_Init() == -1){
         cout << "TTF_Init Error: " << TTF_GetError() << endl;
@@ -266,13 +272,32 @@ int main(int argc, char *argv[])
     for(int i=0; i< NUM_FISH1; i++){
     graphics.renderTexture(fish1[i].currentTexture, movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, graphics.renderer);
     graphics.renderTexture(fish2[i].currentTexture, movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, graphics.renderer);
-    if (checkCollision(mouse.x, mouse.y, 100, 90, movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, lastHorizontalSurfaces)) {
+      if (checkCollision(mouse.x, mouse.y, 100, 90, movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, lastHorizontalSurfaces)) {
                 movement1[i].resetFishPosition((rand() % 2 == 0) ? "left" : "right");
                 timer += 2;
                 score += 10;
-            }
-    if (checkCollision(mouse.x, mouse.y, 100, 90, movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, lastHorizontalSurfaces)) {
+                Mix_Chunk* biteMusic = Mix_LoadWAV("music/bite_sound.mp3");
+                Mix_VolumeChunk(biteMusic, 50);
+                if(biteMusic == nullptr){
+                   SDL_Log("Failed to load background music! SDL_mixer Error: %s", Mix_GetError());
+                }
+                else{
+                   if(Mix_PlayChannel(-1, biteMusic, 0) == -1) {
+                   SDL_Log("Failed to play bite sound! SDL_mixer Error: %s", Mix_GetError());
+        }
+}
+    }
+       if (checkCollision(mouse.x, mouse.y, 100, 90, movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, lastHorizontalSurfaces)) {
                 score = 0;
+                Mix_Music* loseMusic = Mix_LoadMUS("music/lost_sound.wav");
+                Mix_VolumeMusic(50);
+                if(loseMusic == nullptr){
+                    SDL_Log("Failed to load background music! SDL_mixer Error: %s", Mix_GetError());
+                }
+                if(Mix_PlayMusic(loseMusic, 0)== -1){
+                    SDL_Log("Failed to play background music! SDL_mixer Error: %s", Mix_GetError());
+                    return 1;
+      }
                 gameOver = true;
             }
     }
@@ -294,6 +319,8 @@ int main(int argc, char *argv[])
 }
     TTF_CloseFont(font);
     TTF_Quit();
+    Mix_FreeMusic(backgroundMusic);
+    Mix_CloseAudio();
     graphics.quitSDL();
     return 0;
 }

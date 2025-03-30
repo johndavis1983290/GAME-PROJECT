@@ -21,13 +21,14 @@
 
 1742885367 c:\nhapmonlaptrinh\testsdl\loadmedia.h
 
-1743279856 source:c:\ltnc\game project\main.cpp
+1743304288 source:c:\ltnc\game project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	<string>
 	<ctime>
 	<SDL_ttf.h>
+	<SDL_mixer.h>
 	"def.h"
 	"Graphic.h"
 	"game.h"
