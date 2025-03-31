@@ -272,7 +272,7 @@ int main(int argc, char *argv[])
     for(int i=0; i< NUM_FISH1; i++){
     graphics.renderTexture(fish1[i].currentTexture, movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, graphics.renderer);
     graphics.renderTexture(fish2[i].currentTexture, movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, graphics.renderer);
-      if (checkCollision(mouse.x, mouse.y, 100, 90, movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, lastHorizontalSurfaces)) {
+      if (checkCollision(mouse.x, mouse.y, 100, 90, movement1[i].x, movement1[i].y, movement1[i].width, movement1[i].height, direction)) {
                 movement1[i].resetFishPosition((rand() % 2 == 0) ? "left" : "right");
                 timer += 2;
                 score += 10;
@@ -287,7 +287,7 @@ int main(int argc, char *argv[])
         }
 }
     }
-       if (checkCollision(mouse.x, mouse.y, 100, 90, movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, lastHorizontalSurfaces)) {
+       if (checkCollision(mouse.x, mouse.y, 100, 90, movement2[i].x, movement2[i].y, movement2[i].width, movement2[i].height, direction)) {
                 score = 0;
                 Mix_Music* loseMusic = Mix_LoadMUS("music/lost_sound.wav");
                 Mix_VolumeMusic(50);
