@@ -36,8 +36,8 @@ struct Mouse{
      if(x < 0){
         x = 0;
      }
-     else if(x > WINDOW_WIDTH - 150){
-        x = WINDOW_WIDTH - 150;
+     else if(x > WINDOW_WIDTH - 70){
+        x = WINDOW_WIDTH - 70;
      }
      if(y < 0){
         y = 0;
